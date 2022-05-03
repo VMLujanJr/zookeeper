@@ -69,3 +69,5 @@ app.get('/api/animals', (req, res) => { // type... localhost:3001/api/animals ..
 app.listen(PORT, () => {
     console.log(`API server now on port ${PORT}!`);
 });
+
+// added something temporary...
