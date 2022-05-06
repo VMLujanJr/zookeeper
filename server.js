@@ -16,6 +16,9 @@ app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
 
+// ...instructs the server to make certain files readily available and to not gate it behind a server endpoint
+app.use(express.static('public'));
+
 // ...filter functionality
 function filterByQuery(query, animalsArray) {
     
@@ -127,6 +130,27 @@ app.get('/api/animals/:id', (req, res) => {
     else {
         res.send(404);
     }
+});
+
+// ...add index.html route to server.js
+app.get('/', (req, res) => {
+    // ...unlike most GET and POST routes that deal with creating or return JSON data, this GET route has just one job to do, and that is to respond with an HTML page to display in the browser.
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+// ...add animals.html route to server.js
+app.get('/animals', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+
+// ...add zookeepers.html route to server.js
+app.get('/zookeepers', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+});
+
+// ...add 'wildcard' route to server.js (in case of a route that doesn't exist)
+app.get('*', (req, res) => { // '*' should be declared as the last route, otherwise it'll overwrite the others...
+    res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 // ...allow users of app to populate the server with data by sending data from the client side of the app to the server
