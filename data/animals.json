@@ -127,6 +127,15 @@
         "loving"
       ],
       "id": "12"
+    },
+    {
+      "name": "Dolphin",
+      "species": "Fish",
+      "diet": "omnivore",
+      "personalityTraits": [
+        "goofy"
+      ],
+      "id": "13"
     }
   ]
 }
